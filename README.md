@@ -4,6 +4,19 @@ An interactive Streamlit game that teaches kids to sort trash correctly,
 powered by the model we trained (EfficientNetB0) on 6 classes:
 biological, cardboard, glass, metal, paper, plastic.
 
+## About the Project
+
+**Sort the Trash!** is an interactive educational game designed to teach children how to sort waste correctly in a fun and engaging way. The game uses a deep learning model based on **EfficientNetB0**, trained to recognize six categories of waste:
+
+- 🌱 Biological
+- 📦 Cardboard
+- 🍾 Glass
+- 🥫 Metal
+- 📄 Paper
+- 🧴 Plastic
+
+Players are shown a real image of a waste item and must choose the correct recycling bin. The AI model predicts the waste category, and the player earns points for correct answers while learning proper recycling habits. The game includes a scoring system, streak bonuses, sound effects, and colorful visual feedback to make learning enjoyable for children.
+
 ## How to run
 
 1. Put these files together in one folder:
@@ -14,48 +27,25 @@ biological, cardboard, glass, metal, paper, plastic.
    ├── requirements.txt
    ├── garbage_classifier_effnetb0.weights.h5   <-- from the training notebook
    ├── class_names.json                          <-- from the training notebook
-   └── samples/
-       ├── biological/   (a few .jpg/.png images)
-       ├── cardboard/
-       ├── glass/
-       ├── metal/
-       ├── paper/
-       └── plastic/
+   ├── samples/
+   │   ├── biological/   (a few .jpg/.png images)
+   │   ├── cardboard/
+   │   ├── glass/
+   │   ├── metal/
+   │   ├── paper/
+   │   └── plastic/
+   └── assets/
+       └── sounds/
+           ├── correct.wav   <-- short "ding"/cheer sound
+           └── wrong.wav     <-- short "buzz"/oops sound
    ```
 
-2. If you have `test_df` from the training notebook, you can generate the
-   `samples/` folder from it with this snippet:
-
-   In the training notebook, save weights-only instead of the full model
-   (this avoids Keras/TensorFlow version mismatches between machines):
-   ```python
-   model.save_weights("garbage_classifier_effnetb0.weights.h5")
-   ```
-
-   ```python
-   import shutil, os
-
-   SAMPLES_OUT = "samples"
-   N_PER_CLASS = 15  # images per class to use in the game
-
-   for c in class_names:
-       out_dir = os.path.join(SAMPLES_OUT, c)
-       os.makedirs(out_dir, exist_ok=True)
-       class_imgs = test_df[test_df['label'] == c]['filepath'].sample(
-           min(N_PER_CLASS, (test_df['label'] == c).sum()), random_state=42
-       )
-       for p in class_imgs:
-           shutil.copy(p, out_dir)
-
-   print("Game sample images ready ✅")
-   ```
-
-3. Install dependencies:
+2. Install dependencies:
    ```
    pip install -r requirements.txt
    ```
 
-4. Run the game:
+3. Run the game:
    ```
    streamlit run app.py
    ```
@@ -70,8 +60,24 @@ biological, cardboard, glass, metal, paper, plastic.
   - ❌ -5 points, with an encouraging message showing the correct classification.
 - Score and streak are always visible at the top, with a "Start over" button in the sidebar.
 
-## Optional customization
+---
 
-- Change `CORRECT_POINTS` / `WRONG_POINTS` / `STREAK_BONUS` near the top of `app.py` to tune scoring.
-- Change `BIN_META` to adjust colors, icons, or bin names.
-- To add sound on correct/wrong answers, drop in `.mp3` files and play them with `st.audio` or JS `Audio()`.
+## 👥 Team
+
+- **Zeyad Abdalkader**  
+  LinkedIn: https://www.linkedin.com/in/zeyad-abdalkader/
+
+- **Kareem Okeil**  
+  LinkedIn: https://www.linkedin.com/in/kareem-okeil/
+
+- **Ali Elzihdany**  
+  LinkedIn: https://www.linkedin.com/in/ali-elzihdany
+
+- **Mazen Samir**  
+  LinkedIn: https://www.linkedin.com/in/mazen--samir
+
+---
+
+## 🎥 Demo Video
+
+📹 **Gameplay Demo:** [Watch the demo](assets/demo.mp4)
