@@ -6,7 +6,7 @@ the bin they think is correct. The trained model (EfficientNetB0)
 actually classifies the image, and if the child's choice matches the
 model's prediction they earn points and a reward; if not, they get a
 friendly nudge to try again.
-
+ 
 Run:
     streamlit run app.py
 
