@@ -80,4 +80,6 @@ Players are shown a real image of a waste item and must choose the correct recyc
 
 ## 🎥 Demo Video
 
-📹 **Gameplay Demo:** [Watch the demo](assets/demo.mp4)
+📹 **Gameplay Demo:** ## 🎥 Demo
+
+![Demo](assets/demo.gif)
